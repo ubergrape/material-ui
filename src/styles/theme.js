@@ -28,6 +28,7 @@ export function createMuiTheme(config = {}) {
     spacing,
     breakpoints,
     zIndex,
+    overrides: {},
     ...more,
   };
 

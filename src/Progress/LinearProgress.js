@@ -5,8 +5,11 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('LinearProgress', (theme) => {
+const name = 'LinearProgress'
+
+export const styleSheet = createStyleSheet(name, (theme) => {
   const { palette } = theme;
+  const override = theme.overrides[name];
   const transitionDuration = 4; // 400ms
 
   return {
@@ -15,6 +18,7 @@ export const styleSheet = createStyleSheet('LinearProgress', (theme) => {
       overflow: 'hidden',
       height: 5,
       backgroundColor: palette.primary[100],
+      ...override.root
     },
     rootBuffer: {
       backgroundColor: 'transparent',
@@ -29,6 +33,7 @@ export const styleSheet = createStyleSheet('LinearProgress', (theme) => {
       top: 0,
       transition: 'transform 0.2s linear',
       backgroundColor: palette.primary[500],
+      ...override.bar
     },
     dashed: {
       position: 'absolute',
@@ -40,29 +45,36 @@ export const styleSheet = createStyleSheet('LinearProgress', (theme) => {
       backgroundSize: '10px 10px',
       backgroundPosition: '0px -23px',
       animation: 'buffer 3s infinite linear',
+      ...override.dashed
     },
     indeterminateBar1: {
       willChange: 'left, right',
       animation: 'indeterminate-1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
+      ...override.indeterminateBar1
     },
     indeterminateBar2: {
       willChange: 'left, right',
       animation: 'indeterminate-2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
       animationDelay: '1.15s',
+      ...override.indeterminateBar2
     },
     determinateBar1: {
       willChange: 'width',
       transition: `width .${transitionDuration}s linear`,
+      ...override.determinateBar1
     },
     determinateBar2: {
       display: 'none',
+      ...override.determinateBar2
     },
     bufferBar1: {
       transition: `width .${transitionDuration}s linear`,
       backgroundColor: palette.primary[100],
+      ...override.bufferBar1
     },
     bufferBar2: {
       transition: `width .${transitionDuration}s linear`,
+      ...override.bufferBar2
     },
     '@keyframes indeterminate-1': {
       '0%': {
